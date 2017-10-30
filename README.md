@@ -1,1 +1,1 @@
-# nlp_coursera_hw
+# Stanford Introduction to NLP Assignment
