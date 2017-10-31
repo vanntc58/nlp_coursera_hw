@@ -60,7 +60,7 @@ class SpellCorrect:
     for i in range(1, len(sentence) - 1):
       word = sentence[i]
       editProbs = self.editModel.editProbabilities(word)
-      for alternative, editscore in editProbs.iteritems():
+      for alternative, editscore in editProbs.items():
         if alternative == word:
           continue
         sentence[i] = alternative
@@ -106,35 +106,35 @@ def main():
   devPath = '../data/holbrook-tagged-dev.dat'
   devCorpus = HolbrookCorpus(devPath)
 
-  print 'Uniform Language Model: '
+  print ('Uniform Language Model: ')
   uniformLM = UniformLanguageModel(trainingCorpus)
   uniformSpell = SpellCorrect(uniformLM, trainingCorpus)
   uniformOutcome = uniformSpell.evaluate(devCorpus) 
-  print str(uniformOutcome)
+  print (str(uniformOutcome))
 
-  print 'Laplace Unigram Language Model: ' 
+  print ('Laplace Unigram Language Model: ' )
   laplaceUnigramLM = LaplaceUnigramLanguageModel(trainingCorpus)
   laplaceUnigramSpell = SpellCorrect(laplaceUnigramLM, trainingCorpus)
   laplaceUnigramOutcome = laplaceUnigramSpell.evaluate(devCorpus)
-  print str(laplaceUnigramOutcome)
+  print (str(laplaceUnigramOutcome))
 
-  print 'Laplace Bigram Language Model: '
+  print ('Laplace Bigram Language Model: ')
   laplaceBigramLM = LaplaceBigramLanguageModel(trainingCorpus)
   laplaceBigramSpell = SpellCorrect(laplaceBigramLM, trainingCorpus)
   laplaceBigramOutcome = laplaceBigramSpell.evaluate(devCorpus)
-  print str(laplaceBigramOutcome)
+  print (str(laplaceBigramOutcome))
 
-  print 'Stupid Backoff Language Model: '  
+  print ('Stupid Backoff Language Model: '  )
   sbLM = StupidBackoffLanguageModel(trainingCorpus)
   sbSpell = SpellCorrect(sbLM, trainingCorpus)
   sbOutcome = sbSpell.evaluate(devCorpus)
-  print str(sbOutcome)
+  print (str(sbOutcome))
 
-  print 'Custom Language Model: '
+  print ('Custom Language Model: ')
   customLM = CustomLanguageModel(trainingCorpus)
   customSpell = SpellCorrect(customLM, trainingCorpus)
   customOutcome = customSpell.evaluate(devCorpus)
-  print str(customOutcome)
+  print (str(customOutcome))
 
 if __name__ == "__main__":
     main()

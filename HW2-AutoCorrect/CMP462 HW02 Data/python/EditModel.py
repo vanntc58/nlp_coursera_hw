@@ -70,7 +70,7 @@ class EditModel:
   
     # normalize counts. sum over them all, divide each entry by sum.
     total = 0.0
-    for a,b in counts.iteritems():
+    for a,b in counts.items():
       total += b
     # self count
     selfCount = max(9*total, 1)
@@ -78,7 +78,7 @@ class EditModel:
     total += selfCount
     probs = {}
     if(total != 0.0): 
-      for a,b in counts.iteritems():
+      for a,b in counts.items():
         probs[a] = float(b)/total
     return probs
         
@@ -86,7 +86,7 @@ class EditModel:
     """Reads in the string edit counts file. Stores a dictionary of tuples
       (s1,s2) -> count."""
     edit_table = collections.defaultdict(lambda: 0)
-    f = file(file_name)
+    f = open(file_name)
     for line in f:
       contents = line.split('\t')
       edit_table[contents[0]] = int(contents[1])
@@ -128,13 +128,13 @@ def dameraulevenshtein(seq1, seq2):
     # However, only the current and two previous rows are needed at once,
     # so we only store those.
     oneago = None
-    thisrow = range(1, len(seq2) + 1) + [0]
-    for x in xrange(len(seq1)):
+    thisrow = list(range(1, len(seq2) + 1)) + [0]
+    for x in range(len(seq1)):
         # Python lists wrap around for negative indices, so put the
         # leftmost column at the *end* of the list. This matches with
         # the zero-indexed strings and saves extra calculation.
         twoago, oneago, thisrow = oneago, thisrow, [0] * len(seq2) + [x + 1]
-        for y in xrange(len(seq2)):
+        for y in range(len(seq2)):
             delcost = oneago[y] + 1
             addcost = thisrow[y - 1] + 1
             subcost = oneago[y - 1] + (seq1[x] != seq2[y])
