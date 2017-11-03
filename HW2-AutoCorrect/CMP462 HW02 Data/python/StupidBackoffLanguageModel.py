@@ -7,7 +7,8 @@ class StupidBackoffLanguageModel:
 
   def train(self, corpus):
     """ Takes a corpus and trains your language model. 
-        Compute any counts or other corpus statistics in this function.
+        Compute any counts or other corpu
+         s statistics in this function.
     """  
     # TODO your code here
     pass
