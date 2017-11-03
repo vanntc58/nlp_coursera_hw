@@ -1,3 +1,4 @@
+
 class SpellingResult:
   numCorrect = 0
   numTotal = 0
