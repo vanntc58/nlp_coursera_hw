@@ -1,6 +1,5 @@
 # NLP Programming Assignment #3
 # NaiveBayes
-# 2012
 
 #
 # The area for you to implement is marked with TODO!
@@ -73,12 +72,12 @@ class NaiveBayes:
       type = 'neg'
       count_word_class = self.nbLikelihood[(word, type)]
       count_total_word_class = self.total_count_per_class[type]
-      prob_pos += math.log((count_word_class + 1.0)/(count_total_word_class + len(self.vocabulary)))
+      prob_neg += math.log((count_word_class + 1.0)/(count_total_word_class + len(self.vocabulary)))
 
     prob_pos += math.log(prob_prior_pos)
     prob_neg += math.log(prob_prior_neg)
 
-    if(prob_pos - prob_neg) > 0:
+    if prob_pos - prob_neg > 0:
       classType = 'pos'
     else:
       classType = 'neg'
